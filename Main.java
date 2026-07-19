@@ -99,6 +99,7 @@ public class Main {
 
     @Override
     public void run() {
+      long start = System.nanoTime();
       System.out.println();
 
       addText("Selamat");
@@ -112,6 +113,10 @@ public class Main {
       redo();
       System.out.printf("Redo: \"%s\"%n", getCurrentText());
 
+
+      long end = System.nanoTime();
+      double durationMs = (end - start) / 1_000_000.0;
+      System.out.printf("===== Stack Execution time: %.3f ms =====%n", durationMs);
       System.out.println();
     }
   }
