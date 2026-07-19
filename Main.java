@@ -54,10 +54,80 @@ public class Main {
   }
 
   public static class LinkedListProgram implements Program {
+    private LinkedList studentList;
+
+    public LinkedListProgram() {
+      studentList = new LinkedList();
+    }
+
+    // fitur menambahkan mahasiswa baru ke dalam linked list
+    public void addStudent(String nim, String nama, int nilai) {
+      studentList.addStudent(new Student(nim, nama, nilai));
+      System.out.println("Mahasiswa \"" + nama + "\" berhasil ditambahkan.");
+    }
+
+    // fitur menghapus mahasiswa berdasarkan NIM
+    public void deleteStudent(String nim) {
+      boolean berhasil = studentList.deleteStudent(nim);
+      if (berhasil) {
+        System.out.println("Mahasiswa dengan NIM " + nim + " berhasil dihapus.");
+      } else {
+        System.out.println("Mahasiswa dengan NIM " + nim + " tidak ditemukan.");
+      }
+    }
+
+    // fitur mengupdate nilai mahasiswa berdasarkan NIM
+    public void updateNilai(String nim, int nilaBaru) {
+      boolean berhasil = studentList.updateNilai(nim, nilaBaru);
+      if (berhasil) {
+        System.out.println("Nilai mahasiswa dengan NIM " + nim + " berhasil diupdate menjadi " + nilaBaru + ".");
+      } else {
+        System.out.println("Mahasiswa dengan NIM " + nim + " tidak ditemukan.");
+      }
+    }
+
+    // fitur menampilkan seluruh daftar mahasiswa
+    public void displayStudents() {
+      studentList.displayAll();
+    }
+
     @Override
     public void run() {
-      // Buat program untuk Linked List di sini
-      System.out.println("Running Linked List Program...");
+      long start = System.nanoTime();
+      System.out.println();
+
+      // tambah mahasiswa baru
+      addStudent("12345", "Andi", 85);
+      addStudent("67890", "Budi", 90);
+      addStudent("11223", "Siti", 78);
+      System.out.println();
+
+      // tampilkan daftar awal
+      displayStudents();
+
+      // update nilai mahasiswa (Budi -> 95)
+      System.out.println("Mengupdate nilai mahasiswa (Budi -> 95)");
+      updateNilai("67890", 95);
+      System.out.println();
+
+      // tampilkan daftar setelah update
+      System.out.println("Daftar Mahasiswa setelah update:");
+      displayStudents();
+
+      // hapus salah satu mahasiswa (Siti)
+      System.out.println("Menghapus mahasiswa Siti (NIM: 11223)");
+      deleteStudent("11223");
+      System.out.println();
+
+      // tampilkan daftar setelah hapus
+      System.out.println("Daftar Mahasiswa setelah hapus:");
+      displayStudents();
+
+      // ukur waktu eksekusi
+      long end = System.nanoTime();
+      double durationMs = (end - start) / 1_000_000.0;
+      System.out.printf("Linked List Execution time: %.3f ms\n", durationMs);
+      System.out.println();
     }
   }
 
