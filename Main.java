@@ -1,6 +1,8 @@
 
 import java.util.Scanner;
 import java.util.Stack;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class Main {
   public static void main(String[] args) {
@@ -123,10 +125,68 @@ public class Main {
   }
 
   public static class QueueProgram implements Program {
-    @Override
-    public void run() {
-      // Buat program untuk Queue di sini
-      System.out.println("Running Queue Program...");
-    }
-  }
+	    // Menggunakan LinkedList bawaan Java sebagai Queue
+	    private Queue<String> customerQueue;
+
+	    public QueueProgram() {
+	      customerQueue = new LinkedList<>();
+	    }
+
+	    // Fitur 1: Tambah pelanggan baru ke antrean
+	    public void addCustomer(String name) {
+	      customerQueue.add(name);
+	    }
+
+	    // Fitur 2: Layani pelanggan (menghapus dari antrean/FIFO)
+	    public void serveCustomer() {
+	      if (!customerQueue.isEmpty()) {
+	        String served = customerQueue.poll();
+	        System.out.println("Melayani pelanggan: " + served);
+	      } else {
+	        System.out.println("Antrean kosong. Tidak ada yang bisa dilayani.");
+	      }
+	    }
+
+	    // Fitur 3: Menampilkan daftar pelanggan
+	    public void displayQueue() {
+	      System.out.println("Pelanggan dalam antrean:");
+	      if (customerQueue.isEmpty()) {
+	        System.out.println("Antrean kosong.");
+	      } else {
+	        int index = 1;
+	        // Looping untuk menampilkan setiap pelanggan sesuai urutan
+	        for (String customer : customerQueue) {
+	          System.out.println(index + ". " + customer);
+	          index++;
+	        }
+	      }
+	      System.out.println(); // Jarak baris kosong agar rapi
+	    }
+
+	    @Override
+	    public void run() {
+	      long start = System.nanoTime();
+	      System.out.println();
+
+	      // Menambahkan data awal sesuai contoh di soal
+	      addCustomer("Andi");
+	      addCustomer("Budi");
+	      addCustomer("Siti");
+
+	      // Menampilkan kondisi awal antrean
+	      displayQueue();
+
+	      // Melayani pelanggan pertama (Andi)
+	      serveCustomer();
+
+	      // Menampilkan kondisi antrean setelah dilayani
+	      displayQueue();
+
+	      // Menghitung waktu eksekusi
+	      long end = System.nanoTime();
+	      double durationMs = (end - start) / 1_000_000.0;
+	      System.out.printf("===== Queue Execution time: %.3f ms =====%n", durationMs);
+	      System.out.println();
+	    }
+	  }
 }
