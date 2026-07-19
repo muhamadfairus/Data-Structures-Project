@@ -1,5 +1,6 @@
 
 import java.util.Scanner;
+import java.util.Stack;
 
 public class Main {
   public static void main(String[] args) {
@@ -72,7 +73,7 @@ public class Main {
     public void addText(String text) {
       undoStack.push(currentText);
       currentText += text;
-      redoStack = new Stack<>(); // Clear redo stack
+      redoStack.clear(); // Clear redo stack
     }
 
     public void undo() {
