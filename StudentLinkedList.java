@@ -1,9 +1,9 @@
 // implementasi Single Linked List untuk menyimpan data mahasiswa
-public class LinkedList {
+public class StudentLinkedList {
 
   private Node<Student> head; // pointer ke node pertama
 
-  public LinkedList() {
+  public StudentLinkedList() {
     head = null;
   }
 
