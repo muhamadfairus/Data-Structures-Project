@@ -54,10 +54,10 @@ public class Main {
   }
 
   public static class LinkedListProgram implements Program {
-    private LinkedList studentList;
+    private StudentLinkedList studentList;
 
     public LinkedListProgram() {
-      studentList = new LinkedList();
+      studentList = new StudentLinkedList();
     }
 
     // fitur menambahkan mahasiswa baru ke dalam linked list
